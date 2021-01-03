@@ -19,10 +19,19 @@ for(const button of buttons) {
             if(display.textContent.substring(display.textContent.length - 1) === " ") {
                 display.textContent = display.textContent.
                     substring(0, display.textContent.length - 3);
+                topDisplay.textContent = display.textContent.
+                    substring(0, topDisplay.textContent.length - 3);
             }
             else {
                 display.textContent = display.textContent.
                     substring(0, display.textContent.length - 1);
+                topDisplay.textContent = display.textContent.
+                    substring(0, topDisplay.textContent.length - 1);
+            }
+
+            if(display.textContent === "-" || display.textContent === ".") {
+                display.textContent = "";
+                topDisplay.textContent = "";
             }
             lastBtnClicked = "bs";
         }
@@ -59,9 +68,15 @@ for(const button of buttons) {
         else if(e.target.className.includes('neg-btn')) {
             let topDisplayArray = topDisplay.textContent.split(" ");
             topDisplay.textContent = "";
-            if(lastBtnClicked === "equal" || lastBtnClicked === "op") {
-                topDisplay.textContent = "-" + display.textContent;
-                display.textContent = "-" + display.textContent;
+            if(lastBtnClicked === "equal" || lastBtnClicked === "op" || lastBtnClicked === "neg") {
+                if(display.textContent.includes("-")) {
+                    topDisplay.textContent = display.textContent.substring(1);
+                    display.textContent = display.textContent.substring(1);
+                }
+                else {
+                    topDisplay.textContent = "-" + display.textContent;
+                    display.textContent = "-" + display.textContent;
+                }
             }
             else if(display.textContent.includes("-")) {
                 display.textContent = display.textContent.substring(1);
@@ -91,6 +106,10 @@ for(const button of buttons) {
                 display.textContent = "";
                 display.textContent += e.target.textContent;
                 topDisplay.textContent += e.target.textContent;
+            }
+            else if(lastBtnClicked === "equal") {
+                display.textContent = e.target.textContent;
+                topDisplay.textContent = e.target.textContent;
             }
             else {
                 display.textContent += e.target.textContent;
