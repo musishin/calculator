@@ -58,14 +58,23 @@ for(const button of buttons) {
         }
         else if(e.target.className.includes('neg-btn')) {
             let topDisplayArray = topDisplay.textContent.split(" ");
-            if(display.textContent.includes("-")) {
+            topDisplay.textContent = "";
+            if(lastBtnClicked === "equal" || lastBtnClicked === "op") {
+                topDisplay.textContent = "-" + display.textContent;
+                display.textContent = "-" + display.textContent;
+            }
+            else if(display.textContent.includes("-")) {
                 display.textContent = display.textContent.substring(1);
                 topDisplayArray[topDisplayArray.length - 1] = String(topDisplayArray[topDisplayArray.length - 1]).substring(1);
             }
             else {
                 display.textContent = "-" + display.textContent;
                 topDisplayArray[topDisplayArray.length - 1] = "-" + String(topDisplayArray[topDisplayArray.length - 1]);
+                for(index = 0; index < topDisplayArray.length; index++) {
+                    topDisplay.textContent += String(topDisplayArray[index]);
+                }
             }
+            lastBtnClicked = "neg";
         }
         else {
             let displayArray = display.textContent.split(" ");
