@@ -86,7 +86,7 @@ for(const button of buttons) {
                 display.textContent = "-" + display.textContent;
                 topDisplayArray[topDisplayArray.length - 1] = "-" + String(topDisplayArray[topDisplayArray.length - 1]);
                 for(index = 0; index < topDisplayArray.length; index++) {
-                    topDisplay.textContent += String(topDisplayArray[index]);
+                    topDisplay.textContent += " " + String(topDisplayArray[index]);
                 }
             }
             lastBtnClicked = "neg";
