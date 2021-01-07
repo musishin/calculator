@@ -25,7 +25,7 @@ for(const button of buttons) {
             else {
                 display.textContent = display.textContent.
                     substring(0, display.textContent.length - 1);
-                topDisplay.textContent = display.textContent.
+                topDisplay.textContent = topDisplay.textContent.
                     substring(0, topDisplay.textContent.length - 1);
             }
 
@@ -37,7 +37,10 @@ for(const button of buttons) {
         }
         else if(e.target.id === 'equal-btn') {
             let topDisplayArray = topDisplay.textContent.split(" ");
-            if(topDisplayArray[topDisplayArray.length - 1] === "" || topDisplayArray.length < 3) {
+            if(lastBtnClicked === "equal") {
+                return;
+            }
+            else if(topDisplayArray[topDisplayArray.length - 1] === "" || topDisplayArray.length < 3) {
                 return;
             }
             else {
@@ -67,8 +70,8 @@ for(const button of buttons) {
         }
         else if(e.target.className.includes('neg-btn')) {
             let topDisplayArray = topDisplay.textContent.split(" ");
-            topDisplay.textContent = "";
-            if(lastBtnClicked === "equal" || lastBtnClicked === "op" || lastBtnClicked === "neg") {
+            if(lastBtnClicked === "equal" || lastBtnClicked === "op") {
+                topDisplay.textContent = "";
                 if(display.textContent.includes("-")) {
                     topDisplay.textContent = display.textContent.substring(1);
                     display.textContent = display.textContent.substring(1);
@@ -78,13 +81,36 @@ for(const button of buttons) {
                     display.textContent = "-" + display.textContent;
                 }
             }
+            else if(lastBtnClicked === "neg") {
+                if(display.textContent.includes("-")) {
+                    display.textContent = display.textContent.substring(1);
+                    topDisplayArray[topDisplayArray.length - 1] = String(topDisplayArray[topDisplayArray.length - 1]).substring(1);
+                    topDisplay.textContent = "";
+                    for(index = 0; index < topDisplayArray.length; index++) {
+                        topDisplay.textContent += " " + String(topDisplayArray[index]);
+                    }
+                }
+                else {
+                    display.textContent = "-" + display.textContent;
+                    topDisplayArray[topDisplayArray.length - 1] = "-" + String(topDisplayArray[topDisplayArray.length - 1]);
+                    topDisplay.textContent = "";
+                    for(index = 0; index < topDisplayArray.length; index++) {
+                        topDisplay.textContent += " " + String(topDisplayArray[index]);
+                    }
+                }
+            }
             else if(display.textContent.includes("-")) {
                 display.textContent = display.textContent.substring(1);
                 topDisplayArray[topDisplayArray.length - 1] = String(topDisplayArray[topDisplayArray.length - 1]).substring(1);
+                topDisplay.textContent = "";
+                for(index = 0; index < topDisplayArray.length; index++) {
+                    topDisplay.textContent += " " + String(topDisplayArray[index]);
+                }
             }
             else {
                 display.textContent = "-" + display.textContent;
                 topDisplayArray[topDisplayArray.length - 1] = "-" + String(topDisplayArray[topDisplayArray.length - 1]);
+                topDisplay.textContent = "";
                 for(index = 0; index < topDisplayArray.length; index++) {
                     topDisplay.textContent += " " + String(topDisplayArray[index]);
                 }
