@@ -28,7 +28,7 @@ for(const button of buttons) {
             }
 
             if(display.textContent === "") {
-                topDisplay.textContent === "";
+                topDisplay.textContent = "";
             }
             lastBtnClicked = "bs";
         }
