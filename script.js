@@ -33,6 +33,10 @@ for(const button of buttons) {
                 display.textContent = "";
                 topDisplay.textContent = "";
             }
+
+            if(display.textContent === "") {
+                topDisplay.textContent === "";
+            }
             lastBtnClicked = "bs";
         }
         else if(e.target.id === 'equal-btn') {
