@@ -17,16 +17,12 @@ for(const button of buttons) {
         }
         else if(e.target.id === 'bs-btn') {
             if(display.textContent.substring(display.textContent.length - 1) === " ") {
-                display.textContent = display.textContent.
-                    substring(0, display.textContent.length - 3);
-                topDisplay.textContent = display.textContent.
-                    substring(0, topDisplay.textContent.length - 3);
+                display.textContent = display.textContent.substring(0, display.textContent.length - 3);
+                topDisplay.textContent = topDisplay.textContent.substring(0, topDisplay.textContent.length - 3);
             }
             else {
-                display.textContent = display.textContent.
-                    substring(0, display.textContent.length - 1);
-                topDisplay.textContent = topDisplay.textContent.
-                    substring(0, topDisplay.textContent.length - 1);
+                display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+                topDisplay.textContent = topDisplay.textContent.substring(0, topDisplay.textContent.length - 1);
             }
 
             if(display.textContent === "-" || display.textContent === ".") {
